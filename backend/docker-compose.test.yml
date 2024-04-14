@@ -4,7 +4,7 @@ services:
     build: ./backend
     ports:
       - "8000:8000"
-    command: "python backend/manage.py runserver 0.0.0.0:8000"
+    command: "python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     env_file:
@@ -14,10 +14,10 @@ services:
     links:
       - db:db
   db:
-    image: postgres:14.1-alpine
+    image: postgres:latest
     volumes:
-      - pg_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
 volumes:
-  pg_data:
+  postgres_data:
